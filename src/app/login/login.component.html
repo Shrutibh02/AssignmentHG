@@ -1,0 +1,31 @@
+<div  class="login-container">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email" required>
+      <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')" class="alert alert-danger">
+        Email is required
+      </div>
+      <div *ngIf="loginForm.get('email')?.hasError('email')" class="alert alert-danger">
+        Please enter a valid email address
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" required>
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')" class="alert alert-danger">
+        Password is required
+      </div>
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')" class="alert alert-danger">
+        Password must be at least 8 characters long
+      </div>
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('requiresComplexity')" class="alert alert-danger">
+        Password must contain at least one uppercase letter, one number, and one special character
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+  </form>
+
+</div>
